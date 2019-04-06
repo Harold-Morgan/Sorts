@@ -44,15 +44,11 @@ namespace Sorts.Sorts
         public static int[] InsertionSort(int[] targetarray)
         {
             int[] sortedArray = (int[])targetarray.Clone();
-            bool haveWeMet;
 
             for (int i = 0; i < sortedArray.Length; i++)
             {
-                for (int j = i; (j > 0); j--)
-                    if (sortedArray[j] < sortedArray[j-1])
-                    {
+                for (int j = i; (j > 0 && sortedArray[j] < sortedArray[j - 1]); j--)
                         Helper.Swap(ref sortedArray, j, j - 1);
-                    }
             }
 
             return sortedArray;
