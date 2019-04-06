@@ -27,12 +27,48 @@ namespace Sorts.Sorts
                         min = j;
                     }
 
-                int buff = sortedArray[min];
+                Helper.Swap(ref sortedArray, min, i);
+               /* int buff = sortedArray[min];
                 sortedArray[min] = sortedArray[i];
-                sortedArray[i] = buff;
+                sortedArray[i] = buff; */
             }
 
             return sortedArray;
+        }
+
+        /// <summary>
+        /// Сортировка вставкой
+        /// </summary>
+        /// <param name="targetarray"></param>
+        /// <returns></returns>
+        public static int[] InsertionSort(int[] targetarray)
+        {
+            int[] sortedArray = (int[])targetarray.Clone();
+            bool haveWeMet;
+
+            for (int i = 0; i < sortedArray.Length; i++)
+            {
+                for (int j = i; (j > 0); j--)
+                    if (sortedArray[j] < sortedArray[j-1])
+                    {
+                        Helper.Swap(ref sortedArray, j, j - 1);
+                    }
+            }
+
+            return sortedArray;
+        }
+
+    }
+
+    static class Helper
+    {
+        public static void Swap (ref int[] array, int a, int b)
+        {
+            int buff = array[a];
+            array[a] = array[b];
+            array[b] = buff;
+
+            //return array;
         }
     }
 }

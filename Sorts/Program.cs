@@ -30,6 +30,9 @@ namespace Sorts
             Console.Write("[{0}]", string.Join(", ", SortedArray));
             Console.WriteLine();
 
+            Console.WriteLine("После сортировки вставкой: ");
+            Console.Write("[{0}]", string.Join(", ", Sorts.Sorter.InsertionSort(targetarray)));
+            Console.WriteLine();
 
             Console.ReadKey();
         }
