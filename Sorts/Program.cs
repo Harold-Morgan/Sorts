@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Sorts
 {
     class Program
@@ -11,14 +12,23 @@ namespace Sorts
 
         static void Main(string[] args)
         {
-            int[] targetarray = new int[1000];
+            int[] targetarray = new int[10];
+            int[] SortedArray = new int[10];
             Random randNum = new Random();
 
             for (int i = 0; i < targetarray.Length; i++)
-                targetarray[i] = randNum.Next(0, 1000);
+                targetarray[i] = randNum.Next(0, 100);
 
 
+            Console.WriteLine("Не отсортированный: ");
             Console.Write("[{0}]", string.Join(", ", targetarray));
+            Console.WriteLine();
+
+            SortedArray = Sorts.Sorter.SelectionSort(targetarray);
+
+            Console.WriteLine("После сортировки выбором: ");
+            Console.Write("[{0}]", string.Join(", ", SortedArray));
+            Console.WriteLine();
 
 
             Console.ReadKey();

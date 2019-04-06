@@ -7,13 +7,32 @@ using System.Threading.Tasks;
 namespace Sorts.Sorts
 {
     //TODO: было бы прикольно зафигачить все по паттерну, но пока и так пойдёт
-    abstract class Sorter
+    static class Sorter
     {
-        public int[] SortedArray;
-
-        public int[] SelectionSort(int[] targetarray)
+        /// <summary>
+        /// Сортировка выбором
+        /// </summary>
+        /// <param name="targetarray">Массив, который нужно отсортировать</param>
+        /// <returns>Отсортированный массив</returns>
+        public static int[] SelectionSort(int[] targetarray)
         {
-            return targetarray;
+            int[] sortedArray = (int[])targetarray.Clone();
+
+            for (int i = 0; i < sortedArray.Length; i++)
+            {
+                int min = i;
+                for (int j = min + 1; j < sortedArray.Length; j++)
+                    if (sortedArray[j] < sortedArray[min])
+                    {
+                        min = j;
+                    }
+
+                int buff = sortedArray[min];
+                sortedArray[min] = sortedArray[i];
+                sortedArray[i] = buff;
+            }
+
+            return sortedArray;
         }
     }
 }
