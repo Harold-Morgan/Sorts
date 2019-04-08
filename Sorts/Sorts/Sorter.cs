@@ -28,9 +28,9 @@ namespace Sorts.Sorts
                     }
 
                 Helper.Swap(ref sortedArray, min, i);
-               /* int buff = sortedArray[min];
-                sortedArray[min] = sortedArray[i];
-                sortedArray[i] = buff; */
+                /* int buff = sortedArray[min];
+                 sortedArray[min] = sortedArray[i];
+                 sortedArray[i] = buff; */
             }
 
             return sortedArray;
@@ -48,12 +48,72 @@ namespace Sorts.Sorts
             for (int i = 0; i < sortedArray.Length; i++)
             {
                 for (int j = i; (j > 0 && sortedArray[j] < sortedArray[j - 1]); j--)
-                        Helper.Swap(ref sortedArray, j, j - 1);
+                    Helper.Swap(ref sortedArray, j, j - 1);
             }
 
             return sortedArray;
         }
 
+        /// <summary>
+        /// Сортировка Шелла
+        /// </summary>
+        /// <param name="targetarray"></param>
+        /// <returns></returns>
+        public static int[] ShellSort(int[] targetarray)
+        {
+            int[] sortedArray = (int[])targetarray.Clone();
+
+            int h = 1;
+
+            while (h < sortedArray.Length)
+                h = 3 * h + 1; //Последовательность Кнута
+            while (h >= 1)
+            {
+                for (int i = 0; i < sortedArray.Length; i++)
+                {
+                    for (int j = i; (j > 0 && sortedArray[j] < sortedArray[j - 1]); j--)
+                        Helper.Swap(ref sortedArray, j, j - 1);
+                }
+
+                h = h / 3;
+            }
+
+            return sortedArray;
+        }
+    }
+
+    static class quicksorter
+    {
+        static int partition(int[] array, int start, int end)
+        {
+            int temp;//сваппер
+            int marker = start;//пивот по сути, то чем делим
+            for (int i = start; i <= end; i++)
+            {
+                if (array[i] < array[end]) //первый элемент, стандартный квиксорт, с рандомом конечно лучше было бы
+                {
+                    Helper.Swap(ref array, marker, i);
+                    marker += 1;
+                }
+            }
+            //ставим пивот
+            Helper.Swap(ref array, marker, end);
+
+            return marker;
+        }
+
+        public static int[] quicksort(int[] array, int start, int end)
+        {
+            if (start >= end)
+            {
+                return array;
+            }
+            int pivot = partition(array, start, end);
+            quicksort(array, start, pivot - 1);
+            quicksort(array, pivot + 1, end);
+
+            return array;
+        }
     }
 
     static class Helper
