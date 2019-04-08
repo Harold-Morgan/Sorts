@@ -86,11 +86,10 @@ namespace Sorts.Sorts
     {
         static int partition(int[] array, int start, int end)
         {
-            int temp;//сваппер
-            int marker = start;//пивот по сути, то чем делим
+            int marker = start;//первый элемент, стандартный квиксорт
             for (int i = start; i <= end; i++)
             {
-                if (array[i] < array[end]) //первый элемент, стандартный квиксорт, с рандомом конечно лучше было бы
+                if (array[i] < array[end]) 
                 {
                     Helper.Swap(ref array, marker, i);
                     marker += 1;
